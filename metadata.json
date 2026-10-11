@@ -1,0 +1,6 @@
+{
+  "name": "The Turban Kitchen",
+  "description": "100% Pure Vegetarian Family Restaurant ordering dashboard, complete interactive menu, and customer profile and account preferences portal for Sri Anandpur Sahib.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

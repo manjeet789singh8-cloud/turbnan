@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and dietary preferences in The Turban Kitchen",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "alternatePhone": { "type": "string", "maxLength": 30 },
+        "preferredLanguage": { "type": "string", "maxLength": 50 },
+        "birthdayMonth": { "type": "string", "maxLength": 30 },
+        "gstNumber": { "type": "string", "maxLength": 30 },
+        "avatarUrl": { "type": "string", "maxLength": 500 },
+        "addresses": { "type": "array" },
+        "preferences": { "type": "object" },
+        "favoriteItemIds": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "fullName", "email"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer food order record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "deliveryFee": { "type": "number" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "maxLength": 50 },
+        "orderChannel": { "type": "string", "maxLength": 80 },
+        "addressSummary": { "type": "string", "maxLength": 250 },
+        "paymentMethod": { "type": "string", "maxLength": 80 },
+        "paymentTransactionId": { "type": "string", "maxLength": 100 },
+        "paymentUpiVpa": { "type": "string", "maxLength": 80 },
+        "createdAtMs": { "type": "number" },
+        "estimatedDeliveryMinutes": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "items", "total", "status"]
+    },
+    "Booking": {
+      "title": "Table Booking",
+      "description": "Customer table and dining reservation record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 150 },
+        "guests": { "type": "number" },
+        "date": { "type": "string", "maxLength": 30 },
+        "timeSlot": { "type": "string", "maxLength": 30 },
+        "seatingSection": { "type": "string", "maxLength": 80 },
+        "occasion": { "type": "string", "maxLength": 80 },
+        "specialRequests": { "type": "string", "maxLength": 300 },
+        "isJainPreference": { "type": "boolean" },
+        "tableNumber": { "type": "string", "maxLength": 50 },
+        "advanceAmount": { "type": "number" },
+        "paymentTransactionId": { "type": "string", "maxLength": 100 },
+        "paymentUpiVpa": { "type": "string", "maxLength": 80 },
+        "status": { "type": "string", "maxLength": 50 },
+        "createdAtMs": { "type": "number" },
+        "placedAt": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "customerName", "phone", "guests", "date", "timeSlot", "advanceAmount", "status", "paymentTransactionId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User personal preferences and profile settings"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders collection"
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/Booking" },
+      "description": "Customer table and dining reservations collection"
+    }
+  }
+}
